@@ -19,7 +19,7 @@ namespace FitnessMVC.Models
         public ProgramType ProgramType { get; set; }
         public byte ProgramTypeId { get; set; }
 
-        private string _directory = "Pictures";
+        private string _directory = "Images";
         public string ImagePath
         {
             get

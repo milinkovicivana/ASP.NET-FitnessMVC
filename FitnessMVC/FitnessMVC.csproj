@@ -196,6 +196,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -208,6 +209,10 @@
     <Compile Include="Migrations\201905021219472_PopulateProgramTypes.cs" />
     <Compile Include="Migrations\201905021219472_PopulateProgramTypes.Designer.cs">
       <DependentUpon>201905021219472_PopulateProgramTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905021501484_AddImageToInstructor.cs" />
+    <Compile Include="Migrations\201905021501484_AddImageToInstructor.Designer.cs">
+      <DependentUpon>201905021501484_AddImageToInstructor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -225,9 +230,23 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Pictures\personalnitrening.jpg" />
-    <Content Include="Content\Pictures\pilates.jpg" />
-    <Content Include="Content\Pictures\sauna.jpg" />
+    <Content Include="Content\lightbox.min.css" />
+    <Content Include="Content\Images\dragana.jpg" />
+    <Content Include="Content\Images\ivana.jpg" />
+    <Content Include="Content\Images\marijana.jpg" />
+    <Content Include="Content\Images\personalnitrening.jpg" />
+    <Content Include="Content\Images\pilates.jpg" />
+    <Content Include="Content\Images\sauna.jpg" />
+    <Content Include="dist\css\lightbox.css" />
+    <Content Include="dist\css\lightbox.min.css" />
+    <Content Include="dist\images\close.png" />
+    <Content Include="dist\images\loading.gif" />
+    <Content Include="dist\images\next.png" />
+    <Content Include="dist\images\prev.png" />
+    <Content Include="dist\js\lightbox-plus-jquery.js" />
+    <Content Include="dist\js\lightbox-plus-jquery.min.js" />
+    <Content Include="dist\js\lightbox.js" />
+    <Content Include="dist\js\lightbox.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -237,6 +256,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="dist\js\lightbox-plus-jquery.min.map" />
+    <Content Include="dist\js\lightbox.min.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -247,6 +268,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightbox-plus-jquery.min.js" />
+    <Content Include="Scripts\lightbox.js" />
+    <Content Include="Scripts\lightbox.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -284,6 +308,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Programs\Index.cshtml" />
     <Content Include="Views\Programs\Details.cshtml" />
+    <Content Include="Views\Instructors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905021219472_PopulateProgramTypes.resx">
       <DependentUpon>201905021219472_PopulateProgramTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905021501484_AddImageToInstructor.resx">
+      <DependentUpon>201905021501484_AddImageToInstructor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

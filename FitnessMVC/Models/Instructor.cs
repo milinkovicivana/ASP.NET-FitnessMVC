@@ -23,5 +23,15 @@ namespace FitnessMVC.Models
         [StringLength(55)]
         public string Email { get; set; }
 
+        public string Image { get; set; }
+
+        private string _directory = "Images";
+        public string ImagePath
+        {
+            get
+            {
+                return _directory + "/" + Image;
+            }
+        }
     }
 }

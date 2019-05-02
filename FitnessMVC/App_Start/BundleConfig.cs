@@ -20,11 +20,16 @@ namespace FitnessMVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      //"~/Scripts/lightbox.js",
+                      //"~/Scripts/lightbox.min.js",
+                      "~/dist/js/lightbox.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      //"~/Content/lightbox.min.css",
+                      "~/dist/css/lightbox.css"));
         }
     }
 }
