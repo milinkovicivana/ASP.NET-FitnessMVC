@@ -20,6 +20,10 @@ namespace FitnessMVC.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<ProgramType> ProgramTypes { get; set; }
+        public DbSet<Program> Programs { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
