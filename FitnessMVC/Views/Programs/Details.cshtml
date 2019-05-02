@@ -1,0 +1,21 @@
+﻿@model FitnessMVC.Models.Program
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+
+<div class="col-sm-5">
+   <img src="~/Content/@Model.ImagePath" alt="@Model.Name" height="300" />
+</div>
+
+<div class="col-sm-7">
+    <p>@Model.Description</p>
+</div>
+
+
+
+
+
+

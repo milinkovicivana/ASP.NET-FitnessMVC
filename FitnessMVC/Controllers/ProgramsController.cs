@@ -37,5 +37,17 @@ namespace FitnessMVC.Controllers
 
             return View(ViewModel);
         }
+
+        public ActionResult Details(int id)
+        {
+            var program = _context.Programs.SingleOrDefault(p => p.Id == id);
+
+            if (program == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(program);
+        }
     }
 }
