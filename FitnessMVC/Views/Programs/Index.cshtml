@@ -1,0 +1,72 @@
+﻿@model FitnessMVC.ViewModels.IndexProgramViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Programi</h2>
+
+@if (!Model.Programs.Any())
+{
+    <p>Nema programa...</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 1))
+                {
+                    <th>@programType.Name</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 1))
+            {
+                <tr>
+                    <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 2))
+                {
+                    <th>@programType.Name</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 2))
+            {
+                <tr>
+                    <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 3))
+                {
+                    <th>@programType.Name</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 3))
+            {
+                <tr>
+                    <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+
