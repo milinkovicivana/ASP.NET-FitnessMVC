@@ -5,66 +5,111 @@
 
 <h2>Programi</h2>
 
+<button class="btn btn-default">@Html.ActionLink("Add new", "New", "Programs")</button>
+
 @if (!Model.Programs.Any())
 {
     <p>Nema programa...</p>
 }
 else
 {
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 1))
-                {
-                    <th>@programType.Name</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 1))
-            {
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                    @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 1))
+                    {
+                        <th>@programType.Name</th>
+                    }
                 </tr>
-            }
-        </tbody>
-    </table>
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 2))
+            </thead>
+            <tbody>
+                @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 1))
                 {
-                    <th>@programType.Name</th>
+                    <tr>
+                        <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                        <td>                          
+                            @using (Html.BeginForm("Edit", "Programs", new { id = program.Id }))
+                            {
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            }
+                        </td>
+                        <td>                            
+                            @using (Html.BeginForm("Delete", "Programs", new { id = program.Id }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(p => program.Id)
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            }
+                        </td>
+                    </tr>
                 }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 2))
-            {
+            </tbody>
+        </table>
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                    @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 2))
+                    {
+                        <th>@programType.Name</th>
+                    }
                 </tr>
-            }
-        </tbody>
-    </table>
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 3))
+            </thead>
+            <tbody>
+                @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 2))
                 {
-                    <th>@programType.Name</th>
+                    <tr>
+                        <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                        <td>
+                            @using (Html.BeginForm("Edit", "Programs", new { id = program.Id }))
+                            {
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            }
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Delete", "Programs", new { id = program.Id }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(p => program.Id)
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            }
+                        </td>
+                    </tr>
                 }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 3))
-            {
+            </tbody>
+        </table>
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                    @foreach (var programType in Model.ProgramTypes.Where(p => p.Id == 3))
+                    {
+                        <th>@programType.Name</th>
+                    }
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var program in Model.Programs.Where(p => p.ProgramTypeId == 3))
+                {
+                    <tr>
+                        <td>@Html.ActionLink(program.Name, "Details", "Programs", new { id = program.Id }, null)</td>
+                        <td>
+                            @using (Html.BeginForm("Edit", "Programs", new { id = program.Id }))
+                            {
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            }
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Delete", "Programs", new { id = program.Id }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(p => program.Id)
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+         </table>
+   
 }
 
 

@@ -21,6 +21,7 @@ namespace FitnessMVC.Models
         public string Address { get; set; }
 
         [StringLength(55)]
+        [EmailAddress]
         public string Email { get; set; }
 
         public string Image { get; set; }

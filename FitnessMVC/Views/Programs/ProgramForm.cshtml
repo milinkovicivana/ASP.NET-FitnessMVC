@@ -1,0 +1,42 @@
+﻿@model FitnessMVC.ViewModels.ProgramFormViewModel
+@{
+    /**/
+
+    ViewBag.Title = "ProgramForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ProgramForm</h2>
+
+@using (Html.BeginForm("Save", "Programs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(p => p.Program.Name)
+        @Html.TextBoxFor(p => p.Program.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Program.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Program.ProgramTypeId)
+        @Html.DropDownListFor(p => p.Program.ProgramTypeId, new SelectList(Model.ProgramTypes, "Id", "Name"), "Select program type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(p => p.Program.ProgramTypeId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Program.Description)
+        @Html.TextAreaFor(p => p.Program.Description, htmlAttributes: new { @class = "form-control", @rows = 10, @cols = 30 })
+        @Html.ValidationMessageFor(p => p.Program.Description)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Program.Image)
+        @Html.TextBoxFor(p => p.Program.Image, new { type = "file" })
+        @Html.ValidationMessageFor(p => p.Program.Image)
+    </div>
+
+    @Html.HiddenFor(m => m.Program.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
