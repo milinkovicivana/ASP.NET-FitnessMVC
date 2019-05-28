@@ -79,18 +79,20 @@ namespace FitnessMVC.Controllers
                 return View("ProgramForm", viewModel);
             }
 
-            HttpPostedFileBase file = Request.Files["Image"];
-
-            if (file != null && file.ContentLength > 0)
+            foreach (string file in Request.Files)
             {
-                var directory = new DirectoryInfo(string.Format("{0}Content\\Images", Server.MapPath(@"\")));
-                var path = file.FileName;
-                file.SaveAs(path);
+                HttpPostedFileBase img = Request.Files[file];
+                if (img != null && img.ContentLength > 0)
+                {
+                    string imgFile = Path.GetFileName(img.FileName);
+                    string path = "~/Content/Images/" + imgFile;
+                    img.SaveAs(Server.MapPath(path));
+                }
             }
-
+            
             if (program.Id == 0)
-            {              
-                _context.Programs.Add(program);               
+            {                    
+                 _context.Programs.Add(program);               
             }
             else
             {

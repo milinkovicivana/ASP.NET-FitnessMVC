@@ -1,0 +1,49 @@
+﻿@model FitnessMVC.Models.Instructor
+@{
+    /**/
+
+    ViewBag.Title = "InstructorForm";
+}
+
+@if (Model.Id == 0)
+{
+    <h2>Add instructor</h2>
+}
+else
+{
+    <h2>Edit instructor</h2>
+}
+
+@using (Html.BeginForm("Save", "Instructors", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(i => i.Name)
+        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Phone)
+        @Html.TextBoxFor(i => i.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.Phone)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Email)
+        @Html.TextBoxFor(i => i.Email, new { @class = "form-control", type = "email" })
+        @Html.ValidationMessageFor(i => i.Email)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Address)
+        @Html.TextBoxFor(i => i.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.Address)
+    </div>
+
+    @Html.HiddenFor(i => i.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
