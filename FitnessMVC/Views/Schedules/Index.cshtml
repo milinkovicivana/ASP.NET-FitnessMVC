@@ -1,0 +1,75 @@
+﻿@model IEnumerable<FitnessMVC.Models.Schedule>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Termini</h2>
+
+<button class="btn btn-default">@Html.ActionLink("Add new", "New", "Schedules")</button>
+
+@if (!Model.Any())
+{
+    <p>Nema termina...</p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Program</th>
+                <th>Dan</th>
+                <th>Vreme</th>
+                <th>Instruktor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var schedule in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(schedule.Program.Name, "Details", "Programs", new { id = schedule.Program.Id }, null)</td>
+
+                @if (schedule.Day == 1)
+                {
+                    <td>Ponedeljak</td>
+                }
+                else if (schedule.Day == 2)
+                {
+                    <td>Utorak</td>
+                }
+                else if (schedule.Day == 3)
+                {
+                    <td>Sreda</td>
+                }
+                else if (schedule.Day == 4)
+                {
+                    <td>Cetvrtak</td>
+                }
+                else if (schedule.Day == 5)
+                {
+                    <td>Petak</td>
+                }
+                else if (schedule.Day == 6)
+                {
+                    <td>Subota</td>
+                }              
+                <td>@schedule.Time</td>
+                <td>@schedule.Instructor.Name</td>
+                <td>
+                    @using (Html.BeginForm("Edit", "Schedules", new { id = schedule.Id }))
+                    {
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("Delete", "Schedules", new { id = schedule.Id }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+

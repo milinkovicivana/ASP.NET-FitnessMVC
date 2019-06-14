@@ -23,6 +23,7 @@ namespace FitnessMVC.Models
         public DbSet<ProgramType> ProgramTypes { get; set; }
         public DbSet<Program> Programs { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -1,0 +1,56 @@
+﻿@model FitnessMVC.ViewModels.ScheduleFormViewModel
+@{
+    ViewBag.Title = "ScheduleForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Schedule.Id == 0)
+{
+    <h2>Add</h2>
+}
+else
+{
+    <h2>Edit</h2>
+}
+
+@using (Html.BeginForm("Save", "Schedules"))
+{
+    <div class="form-group">
+        @Html.LabelFor(s => s.Schedule.Day)
+        @Html.DropDownListFor(s => s.Schedule.Day, new List<SelectListItem> {
+            new SelectListItem { Text = "Select day", Value = ""},
+            new SelectListItem { Text = "Ponedeljak", Value = "1"},
+            new SelectListItem { Text = "Utorak", Value = "2"},
+            new SelectListItem { Text = "Sreda", Value = "3"},
+            new SelectListItem { Text = "Cetvrtak", Value = "4"},
+            new SelectListItem { Text = "Petak", Value = "5"},
+            new SelectListItem { Text = "Subota", Value = "6"},
+        }, new { @class = "form-control"})
+        @Html.ValidationMessageFor(s => s.Schedule.Day)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Schedule.Time)
+        @Html.TextBoxFor(s => s.Schedule.Time, new { @class = "form-control" })
+        @Html.ValidationMessageFor(s => s.Schedule.Time)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Schedule.ProgramId)
+        @Html.DropDownListFor(s => s.Schedule.ProgramId, new SelectList(Model.Programs, "Id", "Name"), "Select program", new { @class = "form-control" })
+        @Html.ValidationMessageFor(s => s.Schedule.ProgramId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Schedule.InstructorId)
+        @Html.DropDownListFor(s => s.Schedule.InstructorId, new SelectList(Model.Instructors, "Id", "Name"), "Select instructor", new { @class = "form-control" })
+        @Html.ValidationMessageFor(s => s.Schedule.InstructorId)
+    </div>
+
+    @Html.HiddenFor(s => s.Schedule.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
