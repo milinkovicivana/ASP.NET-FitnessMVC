@@ -28,6 +28,7 @@ namespace FitnessMVC.Controllers
             return View(instructors);
         }
 
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {                    
             return View("InstructorForm", new Instructor());
@@ -35,6 +36,7 @@ namespace FitnessMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Save(Instructor instructor)
         {
             if (!ModelState.IsValid)
@@ -61,6 +63,7 @@ namespace FitnessMVC.Controllers
             return RedirectToAction("Index", "Instructors");
         }
 
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var instructor = _context.Instructors.SingleOrDefault(i => i.Id == id);
@@ -75,6 +78,7 @@ namespace FitnessMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Delete(int id)
         {
             var instructor = _context.Instructors.Find(id);

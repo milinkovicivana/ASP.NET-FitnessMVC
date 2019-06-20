@@ -30,6 +30,7 @@ namespace FitnessMVC.Controllers
             return View(schedule);
         }
 
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
             
@@ -45,6 +46,7 @@ namespace FitnessMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Save(Schedule schedule)
         {
             if (!ModelState.IsValid)
@@ -78,6 +80,7 @@ namespace FitnessMVC.Controllers
             return RedirectToAction("Index", "Schedules");
         }
 
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var schedule = _context.Schedules.SingleOrDefault(s => s.Id == id);
@@ -99,6 +102,7 @@ namespace FitnessMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Delete(int id)
         {
             var schedule = _context.Schedules.Find(id);

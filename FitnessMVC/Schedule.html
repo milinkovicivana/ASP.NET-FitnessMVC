@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var ulSchedule = $('#ulSchedule');
+
+            $.ajax({
+
+                type: 'GET',
+                url: 'api/Schedules',
+                dataType: 'json',
+                success: function (data) {
+                    ulSchedule.empty();
+                    $.each(data, function (index, schedule) {                       
+                        ulSchedule.append('<li>' + schedule.Day + ' ' + schedule.Time + ' ' + schedule.InstructorId + ' ' + schedule.ProgramId + ' <button class="delete" data-id=' + schedule.Id + '>Obrisi</button> </li>');
+                    });
+                }
+            });
+
+            $('#addBtn').click(function () {
+
+                var day = $('#day').val();
+                var time = $('#time').val();
+                var instructorId = $('#instructorId').val();
+                var programId = $('#programId').val();
+
+                if (day != "" && time != "" && instructorId != "" && programId != "") {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'api/schedules',
+                        dataType: 'json',
+                        data:
+                        {
+                            Day: day,
+                            Time: time,
+                            ProgramId: programId,
+                            InstructorId: instructorId
+                        },
+                        success: function (response) {
+                            alert("Termin uspesno kreiran");
+                        },
+                        error: function () {
+                            alert("Greska");
+                        }
+                    });
+                }
+                else {
+                    alert("Popunite sva polja!");
+                }
+
+            });
+
+            $('.delete').click(function () {
+
+                var button = $(this);
+          
+                $.ajax({
+                      type: 'DELETE',
+                      url: 'api/schedules' + button.attr("data-id"),                     
+                      success: function () {
+                         alert("Termin uspesno obrisan");
+                      }
+                });                 
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <ul id="ulSchedule"></ul>
+    <p>Add: </p>
+    <input id="day" type="text" placeholder="Day" /><br />
+    <input id="time" type="text" placeholder="Time" /><br />
+    <input id="instructorId" type="text" placeholder="InstructorId" /><br />
+    <input id="programId" type="text" placeholder="ProgramId" /><br />
+    <input id="addBtn" type="button" value="Add" />
+</body>
+</html>

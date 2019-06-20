@@ -5,7 +5,11 @@
 
 <h2>Naš tim</h2>
 
-<button class="btn btn-default">@Html.ActionLink("Add new", "New", "Instructors")</button>
+@if (User.IsInRole("Admin"))
+{
+    <button class="btn btn-default">@Html.ActionLink("Add new", "New", "Instructors")</button>
+}
+
 
 @if (!Model.Any())
 {
@@ -32,28 +36,34 @@ else
                         }
                         else
                         {
-                            <img src="~/Content/Images/avatar.png" alt="instruktor" height="90"/>
+                            <img src="~/Content/Images/avatar.png" alt="instruktor" height="90" />
                         }
                     </td>
                     <td>@instruktor.Name</td>
                     <td>@instruktor.Email</td>
                     <td>
-                        @using (Html.BeginForm("Edit", "Instructors", new { id = instruktor.Id }))
+                        @if (User.IsInRole("Admin"))
                         {
-                            <button type="submit" class="btn btn-primary">Edit</button>
+                            using (Html.BeginForm("Edit", "Instructors", new { id = instruktor.Id }))
+                            {
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            }
                         }
                     </td>
                     <td>
-                        @using (Html.BeginForm("Delete", "Instructors", new { id = instruktor.Id }))
+                        @if (User.IsInRole("Admin"))
                         {
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            using (Html.BeginForm("Delete", "Instructors", new { id = instruktor.Id }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            }
                         }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    
+
 }
 

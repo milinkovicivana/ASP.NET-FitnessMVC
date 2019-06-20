@@ -10,6 +10,7 @@ using System.IO;
 
 namespace FitnessMVC.Controllers
 {
+    
     public class ProgramsController : Controller
     {
         private ApplicationDbContext _context;
@@ -51,6 +52,7 @@ namespace FitnessMVC.Controllers
             return View(program);
         }
 
+        [Authorize(Roles = RoleName.CanManagePrograms + "," + RoleName.Admin)]       
         public ActionResult New()
         {
             var programTypes = _context.ProgramTypes.ToList();
@@ -66,6 +68,7 @@ namespace FitnessMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManagePrograms + "," + RoleName.Admin)]
         public ActionResult Save(Program program)
         {
             if (!ModelState.IsValid)
@@ -109,6 +112,7 @@ namespace FitnessMVC.Controllers
             return RedirectToAction("Index", "Programs");
         }
 
+        [Authorize(Roles = RoleName.CanManagePrograms + "," + RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var program = _context.Programs.SingleOrDefault(p => p.Id == id);
@@ -129,6 +133,7 @@ namespace FitnessMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManagePrograms + "," + RoleName.Admin)]
         public ActionResult Delete(int id)
         {
             var program = _context.Programs.Find(id);
