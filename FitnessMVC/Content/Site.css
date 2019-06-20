@@ -31,6 +31,6 @@ textarea {
     border: 1px solid red;
 }
 
-.td{
-    width: 50%;
+.program td {
+    width: 100%;
 }
