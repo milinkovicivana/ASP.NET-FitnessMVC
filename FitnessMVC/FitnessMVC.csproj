@@ -337,6 +337,7 @@
     <Content Include="Views\Instructors\InstructorForm.cshtml" />
     <Content Include="Views\Schedules\Index.cshtml" />
     <Content Include="Views\Schedules\ScheduleForm.cshtml" />
+    <Content Include="Views\Programs\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
