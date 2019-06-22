@@ -25,6 +25,7 @@ namespace FitnessMVC.Controllers
             _context.Dispose();
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var programs = _context.Programs.ToList();
@@ -40,6 +41,7 @@ namespace FitnessMVC.Controllers
             return View(ViewModel);
         }
 
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             var program = _context.Programs.SingleOrDefault(p => p.Id == id);
